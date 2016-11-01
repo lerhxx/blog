@@ -1,0 +1,73 @@
+body,
+p,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  list-style: none;
+}
+a {
+  color: #000;
+  text-decoration: none;
+}
+body {
+  min-width: 568px;
+  font-family: "Hiragino Sans GB", "Helvetica Neue", '微软雅黑', Tohoma;
+}
+.menu {
+  height: 50px;
+  min-width: 568px;
+  background-color: #576069;
+}
+.menu ul {
+  float: right;
+  height: 50px;
+  line-height: 36px;
+  font-weight: bold;
+}
+.menu ul li a {
+  color: #ccc;
+  background: none;
+}
+.menu ul li a:hover {
+  color: #fff;
+  background: none;
+}
+.menu ul li a.active {
+  color: #fff;
+}
+.post-meta {
+  color: #999;
+  font-size: 90%;
+  margin: 0;
+}
+.post-meta .post-category {
+  margin: 0 0.1em;
+  padding: 0.3em 1em;
+  color: #fff;
+  background: #999;
+  font-size: 80%;
+}
+.post-meta .post-category-js {
+  background: #df2d4f;
+}
+.post-meta .post-category-css {
+  background: #5aba59;
+}
+.post-meta .post-category-webgl {
+  background: #4d85d1;
+}
+.post-meta .author {
+  margin-right: 5px;
+  color: #f00;
+}
+.top-margin {
+  margin-top: 50px !important;
+}

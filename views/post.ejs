@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title><%= title %> </title>
+		<meta charset='utf-8'>
+		<link rel='stylesheet' href='/stylesheets/pure-min.css' />
+	    <link rel='stylesheet' href='/stylesheets/common.css' />
+	    <link rel='stylesheet' href='/stylesheets/index.css' />
+	    <!--[if lt IE9]> 
+	      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+	    <!--[if lte IE 8]> 
+	    <noscript>
+	         <style>.html5-wrappers{display:none!important;}</style>
+	         <div class="ie-noscript-warning">您的浏览器禁用了脚本，请<a href="">查看这里</a>来启用脚本!或者<a href="/?noscript=1">继续访问</a>.
+	         </div>
+	    </noscript>
+	    <![endif]-->
+	</head>
+	<body>
+		<%- include nav %>
+		<form method='post' class='top-margin'>
+			<span><a title='上传' href='/upload'>upload</a></span>
+			标题：<br />
+			<input type='text' name='title' /><br />
+			正文：<br />
+			<textarea name='post' row='20' cols='100'>
+			</textarea><br />
+			<input type='submit' value='发表' />
+		</form>
+	</body>
+</head>

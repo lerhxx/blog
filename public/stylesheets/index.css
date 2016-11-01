@@ -1,0 +1,51 @@
+#self {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  min-width: 142px;
+  text-align: center;
+  background-color: #fe4365;
+  z-index: 10;
+}
+#self .intro-box {
+  position: absolute;
+  left: 0;
+  top: 30%;
+  width: 100%;
+  color: #fff;
+}
+#self .intro-box .portrait {
+  display: block;
+  width: 100px;
+  height: 100px;
+  margin: auto;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: url("../images/portrait.jpg") center no-repeat;
+  background-size: cover;
+}
+#self .intro-box .name {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-weight: bold;
+}
+#content {
+  height: 100vh;
+  margin-left: 25%;
+}
+#content .article-list {
+  padding: 50px 3em;
+}
+#content .article-list .article-list-item {
+  padding: 1em 2em 2.5em 2em;
+  border-bottom: 1px solid #eee;
+}
+#content .article-list .article-list-item .article-header {
+  margin-bottom: 20px;
+}
+#content .article-list .article-list-item .item-title {
+  font-size: 1.5em;
+}

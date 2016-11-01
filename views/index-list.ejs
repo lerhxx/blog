@@ -1,0 +1,23 @@
+<div class='pure-u-3-4' id='content'>
+	<% if(posts.length) { %>
+		<ul class='article-list'>
+			<% posts.forEach(function(post, index) { %>
+				<li class='article-list-item'>
+					<header class='article-header'>
+						<h2 class='item-title'><a href='#'><%= post.title %></a></h2>
+						<p class='post-meta'><span class='author'><%= post.name %></span> post @ 
+							<span class='post-time'><%= post.time.minute %></span>
+							<a class='post-category post-category-js' href='#'>JavaScript</a>
+						</p>
+					</header>
+					<section class='article-item-abstract'>
+						 <%- post.post %>
+					</section>
+				</li>
+			<% }) %>
+		</ul>
+		<% }else { %>
+			<div style='font-size: 30px;' class='top-margin'>博主有点懒，还没有随笔哦~<div>
+		<% } %>
+</div>
+
