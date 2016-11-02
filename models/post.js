@@ -50,7 +50,7 @@ Post.prototype.save = function(callback) {
 	});
 };
 
-Post.getAll = function(email, callback) {
+Post.getAll = function(opt, callback) {
 	mongodb.open(function(err, db) {
 		if(err) {
 			return callback(err);
@@ -62,12 +62,12 @@ Post.getAll = function(email, callback) {
 				return callback(err);
 			}
 
-			var query = {};
-			if(email) {
-				query.email = email;
-			}
+			// var query = {};
+			// if(email) {
+			// 	query.email = email;
+			// }
 
-			collection.find(query).sort({
+			collection.find(opt).sort({
 				time: -1
 			}).toArray(function(err, docs) {
 				mongodb.close();
@@ -83,7 +83,7 @@ Post.getAll = function(email, callback) {
 	});
 };
 
-Post.getOne = function(name, day, title, callback) {
+Post.getOne = function(name, title, callback) {
 	mongodb.open(function(err, db) {
 		if(err) {
 			return callback(err);
@@ -95,7 +95,6 @@ Post.getOne = function(name, day, title, callback) {
 			}
 			collection.findOne({
 				"name": name,
-				"time.day": day,
 				"title": title
 			}, function(err, doc) {
 				mongodb.close();
@@ -107,4 +106,12 @@ Post.getOne = function(name, day, title, callback) {
 			});
 		});
 	});
+}
+
+Post.getAllByEmail = function(email, callback) {
+	Post.getAll({'email': email}, callback);
+}
+
+Post.getAllByName = function(name, callback) {
+	Post.getAll({'name': name}, callback);
 }

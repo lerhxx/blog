@@ -12,7 +12,8 @@ var upload = require('../models/multerUtil.js');
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
-		Post.getAll(req.session.user.email || null, function(err, posts) {
+		var email = req.session.user ? req.session.user.email : null;
+		Post.getAllByEmail(email, function(err, posts) {
 			if(err) {
 				posts = [];
 			}
@@ -52,7 +53,7 @@ module.exports = function(app) {
 			email: email
 		});
 
-		User.get(newUser.email, function(err, user) {
+		User.getByEmail(newUser.email, function(err, user) {
 			if(err) {
 				req.flash('error', err);
 				return res.redirect('/');
@@ -88,7 +89,7 @@ module.exports = function(app) {
 		var md5 = crypto.createHash('md5'),
 			password = md5.update(req.body.password).digest('hex');
 
-		User.get(req.body.email, function(err, user){
+		User.getByEmail(req.body.email, function(err, user){
 			if(!user) {
 				req.flash('error', '用户不存在！');
 				return res.redirect('/login');
@@ -148,12 +149,12 @@ module.exports = function(app) {
 	})
 
 	app.get('/u/:name', function(req, res) {
-		User.get(req.params.name, function(err, user) {
+		User.getByName(req.params.name, function(err, user) {
 			if(!user) {
 				req.flash('error', '用户不存在！');
 				return res.redirect('/');
 			}
-			Post.getAll(user.name, function(err, posts) {
+			Post.getAllByName(user.name, function(err, posts) {
 				if(err) {
 					req.flash('error', err);
 					return res.redirect('/');
@@ -165,6 +166,22 @@ module.exports = function(app) {
 					success: req.flash('success').toString(),
 					error: req.flash('error').toString()
 				});
+			});
+		});
+	});
+
+	app.get('/u/:name/:title', function(req, res) {
+		Post.getOne(req.params.name, req.params.title, function(err, post) {
+			if(err) {
+				req.flash('error', err);
+				return res.redirect('/');
+			}
+			res.render('article', {
+				title: req.params.title,
+				post: post,
+				user: req.session.user,
+				success: req.flash('success').toString(),
+				error: req.flash('error').toString(),
 			});
 		});
 	});

@@ -4,8 +4,9 @@
 			<% posts.forEach(function(post, index) { %>
 				<li class='article-list-item'>
 					<header class='article-header'>
-						<h2 class='item-title'><a href='#'><%= post.title %></a></h2>
-						<p class='post-meta'><span class='author'><%= post.name %></span> post @ 
+						<h2 class='item-title'><a href='/u/<%=post.name %>/<%= post.time.day %>/<%= post.title %>'><%= post.title %></a></h2>
+						<p class='post-meta'><a href='/u/<%= post.name %>' class='author'><%= post.name %></a>
+						post @ 
 							<span class='post-time'><%= post.time.minute %></span>
 							<a class='post-category post-category-js' href='#'>JavaScript</a>
 						</p>

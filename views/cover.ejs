@@ -1,7 +1,9 @@
 <div class='pure-u-1-4' id='self'>
 	<div class='intro-box'>
 		<span class='portrait'></span>
+		<% if(user) { %>
 		<p class='name'><%= user.name %></p>
+		<% } %>
 		<p class='intru'>热爱前端</p>
 	</div>
 </div>

@@ -37,7 +37,7 @@ User.prototype.save = function(callback) {
 	});
 };
 
-User.get = function(email, callback) {
+User.get = function(opt, callback) {
 	mongodb.open(function(err, db) {
 		if(err) {
 			return callback(err);
@@ -47,9 +47,7 @@ User.get = function(email, callback) {
 				mongodb.close();
 				return callback(err);
 			}
-			collection.findOne({
-				email: email
-			}, function(err, user) {
+			collection.findOne(opt, function(err, user) {
 				mongodb.close();
 				if(err) {
 					return callback(err);
@@ -59,3 +57,11 @@ User.get = function(email, callback) {
 		});
 	});
 };
+
+User.getByEmail = function(email, callback) {
+	User.get({'email': email}, callback);
+}
+
+User.getByName = function(name, callback) {
+	User.get({'name': name}, callback);
+}
