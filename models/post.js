@@ -51,7 +51,7 @@ Post.prototype.save = function(callback) {
 	});
 };
 
-Post.getAll = function(opt, callback) {
+Post.getTen = function(opt, page, callback) {
 	mongodb.open(function(err, db) {
 		if(err) {
 			return callback(err);
@@ -68,21 +68,34 @@ Post.getAll = function(opt, callback) {
 			// 	query.email = email;
 			// }
 
-			collection.find(opt).sort({
-				time: -1
-			}).toArray(function(err, docs) {
-				mongodb.close();
-				if(err) {
-					return callback(err);
-				}
-				docs.forEach(function(doc) {
-					doc.post = markdown.toHTML(doc.post);
+			collection.count(query, function(err, total) {
+				collection.find(opt, {
+					skip: (page - 1) * 10,
+					limit: 10
+				}).sort({
+					time: -1
+				}).toArray(function(err, docs) {
+					mongodb.close();
+					if(err) {
+						return callback(err);
+					}
+					docs.forEach(function(doc) {
+						doc.post = markdown.toHTML(doc.post);
+					});
+					callback(null, docs, total);
 				});
-				callback(null, docs);
 			});
 		});
 	});
 };
+
+Post.getAllByEmail = function(email, page, callback) {
+	Post.getTen({'email': email}, page, callback);
+}
+
+Post.getAllByName = function(name, page, callback) {
+	Post.getTen({'name': name}, page, callback);
+}
 
 Post.getOne = function(name, title, callback) {
 	mongodb.open(function(err, db) {
@@ -112,14 +125,6 @@ Post.getOne = function(name, title, callback) {
 			});
 		});
 	});
-}
-
-Post.getAllByEmail = function(email, callback) {
-	Post.getAll({'email': email}, callback);
-}
-
-Post.getAllByName = function(name, callback) {
-	Post.getAll({'name': name}, callback);
 }
 
 Post.edit = function(name, title, callback) {

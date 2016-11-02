@@ -13,18 +13,22 @@ var upload = require('../models/multerUtil.js');
 
 module.exports = function(app) {
 	app.get('/', function(req, res) {
+		var page = parseInt(req.query.p) || 1;
 		var email = req.session.user ? req.session.user.email : null;
-		Post.getAllByEmail(email, function(err, posts) {
+		Post.getAllByEmail(email, page, function(err, posts, total) {
 			if(err) {
 				posts = [];
 			}
 			res.render('index', {
 				title: '主页',
+				posts: posts,
+				page: page,
+				isFirstPage: (page - 1) == 0,
+				isLastPage: ((page - 1) * 10 + posts.length) == total,
 				user: req.session.user,
 				success: req.flash('success').toString(),
 				error: req.flash('error').toString(),
-				email: req.flash('email').toString(),
-				posts: posts
+				email: req.flash('email').toString()
 			});
 		})
 	});
@@ -150,12 +154,13 @@ module.exports = function(app) {
 	})
 
 	app.get('/u/:name', function(req, res) {
+		var page = parseInt(req.query.p) || 1;
 		User.getByName(req.params.name, function(err, user) {
 			if(!user) {
 				req.flash('error', '用户不存在！');
 				return res.redirect('/');
 			}
-			Post.getAllByName(user.name, function(err, posts) {
+			Post.getAllByName(user.name, page, function(err, posts, total) {
 				if(err) {
 					req.flash('error', err);
 					return res.redirect('/');
@@ -163,6 +168,8 @@ module.exports = function(app) {
 				res.render('user', {
 					title: user.name,
 					posts: posts,
+					isFirstPage: (page - 1) == 0,
+					isLastPage: ((page - 1) * 10 + post.length) == total,
 					user: req.session.user,
 					success: req.flash('success').toString(),
 					error: req.flash('error').toString()
