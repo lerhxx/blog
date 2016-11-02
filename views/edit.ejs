@@ -19,20 +19,15 @@
 	</head>
 	<body>
 		<%- include nav %>
-		<p class='info top-margin'>
-			作者：<a href="/u/<%= post.name %>"><%= post.name %></a>
-			日期：<%= post.time.minute %>
-		</p>
-		<% if (user && (user.name == post.name)) { %>
-			<p>
-				<span><a class='edit' href="/edit/<%= post.name %>/<%= post.title %>">编辑</a></span>
-				<span><a class='edit' href="/remove/<%= post.name %>/<%= post.title %>">删除</a></span>
-			</p>
-		<% } %>
-		<div><%- post.post %></div>
-		<%- include comment %>
+		<form class='top-margin' method='post' action='/edit/<%= post.name %>/<%= post.title %>'>
+			标题：<br />
+			<input type='text' name='title' value='<%= post.title %>' /><br />
+			正文：<br />
+			<textarea name='post' row='20' cols='100'><%= post.post %></textarea><br />
+			<input type='submit' value='保存修改' />
+		</form>
 		<% if(success) { %>
-			<div><%= success %></div>
+			<div><% success %></div>
 		<% } %>
 	</body>
 </head>
