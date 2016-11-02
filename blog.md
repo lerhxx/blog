@@ -1,28 +1,20 @@
-¼¼ÊõÕ»
-	Ç°¶Ë£º
-		css£ºstylus
-		js£ºes6
-		×Ô¶¯»¯£ºgulp
-		×ªÒëes6£ºwebpack¡¢babel
-	ºóÌ¨
-		nodejs + express
-	Êı¾İ¿â
-		mongodb
+å‰ç«¯ï¼š
 
+	* cssï¼šstylus
+	* jsï¼šes6
+	* è‡ªåŠ¨åŒ–ï¼šgulp
+	* è½¬è¯‘es6ï¼šwebpackã€babel
 
-¢ÙÒ³ÃæÉè¼Æ
+åå°
 
-	ÏìÓ¦Ê½Éè¼Æ
-		²¿·Öpadding¡¢marginÊ¹ÓÃem
-		×ÖÌåÏìÓ¦Ê½£ºem¡¢remµ¥Î»
+	* nodejs + express
 
-	Ö÷ÌâÉ«Í³Ò»
-		Ê¹ÓÃ±äÁ¿¶¨Òå
-	
-	Ê×Ò³ÁĞ±íÖĞ´øÓĞ±êÇ©£¬²»Í¬ÄÚÈİ²»Í¬ÑÕÉ«£¬ĞÑÄ¿
+æ•°æ®åº“
+
+	* mongodb
 
 
 
+MongoDB API ä¸­æ–‡ç¿»è¯‘
 
-µÇÂ¼Ò³Ãæ
-	±íµ¥µ¹Èı½ÇÉè¼Æ
+è¯·çœ‹ Wiki
