@@ -68,7 +68,7 @@ Post.getTen = function(opt, page, callback) {
 			// 	query.email = email;
 			// }
 
-			collection.count(query, function(err, total) {
+			collection.count(opt, function(err, total) {
 				collection.find(opt, {
 					skip: (page - 1) * 10,
 					limit: 10
@@ -95,6 +95,10 @@ Post.getAllByEmail = function(email, page, callback) {
 
 Post.getAllByName = function(name, page, callback) {
 	Post.getTen({'name': name}, page, callback);
+}
+
+Post.getAll = function(page, callback) {
+	Post.getTen({}, page, callback);
 }
 
 Post.getOne = function(name, title, callback) {

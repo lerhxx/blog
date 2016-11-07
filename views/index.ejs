@@ -21,7 +21,9 @@
     <%- include nav %>
     <div class='pure-g'>
       <%- include cover %>
-      <%- include index-list %>
+      <div class='pure-u-3-4' id='content'>
+        <%- include index-list %>
+      </div>
     </div>
     <% if(success) { %>
       <div><%= success %></div>

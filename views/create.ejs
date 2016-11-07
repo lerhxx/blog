@@ -19,12 +19,17 @@
 	</head>
 	<body>
 		<%- include nav %>
-		<form class='top-margin' method='post' action='/upload' enctype='multipart/form-data'>
-			<input type='file' multiple name='field1' /><br>
-			<input type='submit' />
+		<form method='post' class='top-margin' action='/posts'>
+			<div class='pure-control-group'>
+				<label for='title'>标题：</label>
+				<input type='text' name='title' id='title' />
+			</div>
+			<div class='pure-control-group'>
+				<label for='content'>正文：</label>
+				<textarea id='content' name='content' row='20' cols='100'>
+				</textarea><br />
+			</div>
+			<input type='submit' class='pure-button pure-button-submit' value='发表' />
 		</form>
-		<% if(success) { %>
-			<div><%= success %></div>
-		<% } %>
 	</body>
 </head>

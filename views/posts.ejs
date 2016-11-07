@@ -19,14 +19,10 @@
 	</head>
 	<body>
 		<%- include nav %>
-		<form method='post' class='top-margin'>
-			<span><a title='上传' href='/upload'>upload</a></span>
-			标题：<br />
-			<input type='text' name='title' /><br />
-			正文：<br />
-			<textarea name='post' row='20' cols='100'>
-			</textarea><br />
-			<input type='submit' value='发表' />
-		</form>
+		<div class='top-margin'>
+			<div style='width: 60%;margin: auto;'>
+				<%- include index-list %>
+			</div>
+		</div>
 	</body>
 </head>

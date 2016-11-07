@@ -23,7 +23,27 @@
 				<span class='tab-item login active'><a href='./login'>登录</a></span>
 				<span class='tab-item register'><a href='./register'>注册</a></span>
 			</div>
-			<%- include login-form %>
+			<form class='pure-form pure-form-aligned login-form' method='post'>
+				<fieldset>
+					<div class='pure-control-group'>
+						<label for='name'>昵称</label>
+						<input id='name' name='name' type='text' placeholder='昵称'>
+					</div>
+					<div class='pure-control-group'>
+						<label for='pwd'>密码</label>
+						<input id='pwd' name='password' type='password' placeholder='密码'>
+					</div>
+					<button type='submit' class='pure-button pure-button-submit'>登录</button>
+					<div class='control-group'>
+						<input id='remember' type='checkbox' value='记住我'/>
+						<label for='remember' class='remember'>记住我</label>
+						<a href='#' id='forget'>忘记密码</a>
+					</div>
+				</fieldset>
+				<% if(error) { %>
+			      <div><%= error %></div>
+			    <% } %>
+			</form>
 		</div>
 	</body>
 </html>
