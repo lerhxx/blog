@@ -12,6 +12,14 @@ Comment.prototype.save = function(callback) {
 	var name = this.name,
 		title = this.title,
 		comment = this.comment;
+	var date = new Date();
+	var time = {
+		date: date,
+		year: date.getFullYear(),
+		month: (date.getMonth() + 1),
+		day: date.getDate(),
+		minute: (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+	}
 
 	mongodb.open(function(err, db) {
 		if(err) {

@@ -1,22 +1,30 @@
-<br />
-<% post.comments.forEach(function(comment, index) { %>
-	<p>
-		<a href='<%= comment.website %>'><%= comment.name %></a>
-		<span class='info'>回复于<%= comment.time %></span>
-	</p>
-	<p><%- comment.content %></p>
-<% }) %>
-
-<form method='post' action='/u/<%= post.name %>/<%= post.title %>'>
-	<% if(user){ %>
-		姓名：<input type='text' name='name' value='<%= user.name %>' /><br />
-		邮箱：<input type='text' name='email' value='<%= user.email %>' /><br />
-		网址：<input typt='text' name='website' value='/u/<%= user.name %>' /><br />
-	<% } else { %>
-		姓名：<input type='text' name='name'/><br />
-		邮箱：<input type='text' name='email'/><br />
-		网址：<input typt='text' name='website' value='http://'/><br />
-	<% } %>
-	<textarea name='content' rows='5' cols='80'></textarea><br />
-	<input type='submit' value='留言' />
-</form>
+<div class='comment'>
+	<div class='comment-tab'>
+		<div class='comment-sum'>
+			<span>10000+</span>条评论
+		</div>
+		<div class='add-comment'>
+			<span class='write-icon'></span>
+			<a>添加评论</a>
+		</div>
+	</div>
+	<ul class='comment-list'>
+		<li class='comment-item'>
+			<div class='commenter'>
+				<img class='head' src='../public/images/portrait.jpg'></img>
+			</div>
+			<div class='comment-content'>
+				<div class='comment-post'>
+					<div class='name'>lili</div>
+					<div class='post-meta'>
+						<div class='post-time'>2016-10-24</div>
+					</div>
+				</div>
+				<p class='comment'>
+					利用一张全景图围成一个球，自身位置位于球体内。由于图片是矩形，所以最上和最下的缝合处很明显就能够看得出来。
+				</p>
+				<p class='reply'>回复</p>
+			</div>
+		</li>
+	</ul>
+</div>

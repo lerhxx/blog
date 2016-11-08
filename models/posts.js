@@ -1,11 +1,11 @@
 var mongodb = require('./db'),
 	markdown = require('markdown').markdown;
 
-function Post(name, title, post, email) {
+function Post(name, title, abstract, content) {
 	this.name = name;
 	this.title = title;
-	this.email = email;
-	this.post = post;
+	this.abstract = abstract;
+	this.content = content;
 }
 
 module.exports = Post;
@@ -25,8 +25,9 @@ Post.prototype.save = function(callback) {
 		name: this.name,
 		time: time,
 		title: this.title,
-		email: this.email,
-		post: this.post,
+		abstract: this.abstract,
+		content: this.content,
+		like: 0,
 		comments: []
 	}
 
@@ -80,7 +81,7 @@ Post.getTen = function(opt, page, callback) {
 						return callback(err);
 					}
 					docs.forEach(function(doc) {
-						doc.post = markdown.toHTML(doc.post);
+						doc.content = markdown.toHTML(doc.content);
 					});
 					callback(null, docs, total);
 				});
@@ -101,7 +102,7 @@ Post.getAll = function(page, callback) {
 	Post.getTen({}, page, callback);
 }
 
-Post.getOne = function(name, title, callback) {
+Post.getOne = function(title, callback) {
 	mongodb.open(function(err, db) {
 		if(err) {
 			return callback(err);
@@ -112,7 +113,6 @@ Post.getOne = function(name, title, callback) {
 				return callback(err);
 			}
 			collection.findOne({
-				"name": name,
 				"title": title
 			}, function(err, doc) {
 				mongodb.close();
@@ -120,7 +120,7 @@ Post.getOne = function(name, title, callback) {
 					return callback(err);
 				}
 				if(doc){
-					doc.post = markdown.toHTML(doc.post);
+					doc.content = markdown.toHTML(doc.content);
 					doc.comments.forEach(function(comment) {
 						comment.content = markdown.toHTML(comment.content);
 					});
@@ -155,7 +155,7 @@ Post.edit = function(name, title, callback) {
 	});
 };
 
-Post.update = function(name, title, post, callback) {
+Post.update = function(name, title, content, callback) {
 	mongodb.open(function(err, db) {
 		if(err) {
 			return callback(err);
@@ -168,7 +168,7 @@ Post.update = function(name, title, post, callback) {
 			collection.update({
 				"name": name,
 				"title": title
-			}, {$set: {post: post}}, function(err) {
+			}, {$set: {content: content}}, function(err) {
 				mongodb.close();
 				if(err) {
 					return callback(err);

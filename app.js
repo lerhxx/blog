@@ -6,7 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var config = require('config-lite');
+
 
 var app = express();
 var settings = require('./settings');
@@ -30,19 +31,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
-  secret: settings.cookieSecret,
-  key: settings.db,
-  cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},
+  name: config.session.key,
+  secret: config.session.secret,
+  cookie: {maxAge: config.session.maxAge},
   store: new MongoStore({
-    db: settings.db,
-    url: 'mongodb://localhost/blog'
+    url: config.mongodb
   }),
   resave: false,
   saveUninitialized: false
 }));
 
 routes(app);
-app.listen(app.get('port'), function() {
+app.listen(config.port,  function() {
   console.log('Express server listening on prot' + app.get('port'));
 })
 

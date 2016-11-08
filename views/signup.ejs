@@ -1,29 +1,9 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	    <title><%= title %></title>
-	    <link rel='stylesheet' href='/stylesheets/pure-min.css' />
-	    <link rel='stylesheet' href='/stylesheets/common.css' />
-	    <link rel='stylesheet' href='/stylesheets/form.css' />
-	    <!--[if lt IE9]> 
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<!--[if lte IE 8]> 
-		<noscript>
-		     <style>.html5-wrappers{display:none!important;}</style>
-		     <div class="ie-noscript-warning">您的浏览器禁用了脚本，请<a href="">查看这里</a>来启用脚本!或者<a href="/?noscript=1">继续访问</a>.
-		     </div>
-		</noscript>
-		<![endif]-->
-    </head>
-	<body>
-		<%- include nav %>
-		<div class='two-form top-margin'>
-			<div class='form-tab'>
-				<span class='tab-item login active'><a href='./login'>登录</a></span>
-				<span class='tab-item register'><a href='./register'>注册</a></span>
-			</div>
-			<%- include reg-form %>
+<%- include header %>
+	<div class='two-form top-margin'>
+		<div class='form-tab'>
+			<span class='tab-item login active'><a href='./login'>登录</a></span>
+			<span class='tab-item register'><a href='./register'>注册</a></span>
 		</div>
-	</body>
-</html>
+		<%- include reg-form %>
+	</div>
+<%- include footer %>

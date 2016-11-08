@@ -39,6 +39,7 @@ router.post('/', checkLogin, function(req, res, next) {
 	var current = req.session.user;
 	var title = req.body.title;
 	var content = req.body.content;
+	var abstract = req.body.abstract;
 
 	try {
 		if(!title.length) {
@@ -52,7 +53,7 @@ router.post('/', checkLogin, function(req, res, next) {
 		return res.redirect('back');
 	}
 
-	var post = new Post(current.name, title, content);
+	var post = new Post(current.name, title, abstract, content);
 	post.save(function(err) {
 		if(err) {
 			req.flash('error', err);
@@ -60,6 +61,24 @@ router.post('/', checkLogin, function(req, res, next) {
 		}
 		req.flash('success', '发布成功！');
 		res.redirect('/posts');
+	})
+});
+
+router.get('/:title', function(req, res, next) {
+	var title = req.params.title;
+
+	Post.getOne(title, function(err, post) {
+		if(err) {
+			req.flash('error', err);
+			res.redirect('/posts');
+		}
+		res.render('article',{ 
+			title: title,
+			post: post,
+			user: req.session.user,
+			success: req.flash('success').toString(),
+			error: req.flash('error').toString()
+		})
 	})
 })
 

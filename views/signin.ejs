@@ -1,49 +1,29 @@
-<!DOCTYPE html>
-<html>
-	<head>
-	    <title><%= title %></title>
-	    <link rel='stylesheet' href='/stylesheets/pure-min.css' />
-	    <link rel='stylesheet' href='/stylesheets/common.css' />
-	    <link rel='stylesheet' href='/stylesheets/form.css' />
-	    <!--[if lt IE9]> 
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<![endif]-->
-		<!--[if lte IE 8]> 
-		<noscript>
-		     <style>.html5-wrappers{display:none!important;}</style>
-		     <div class="ie-noscript-warning">您的浏览器禁用了脚本，请<a href="">查看这里</a>来启用脚本!或者<a href="/?noscript=1">继续访问</a>.
-		     </div>
-		</noscript>
-		<![endif]-->
-    </head>
-	<body>
-		<%- include nav %>
-		<div class='two-form top-margin'>
-			<div class='form-tab'>
-				<span class='tab-item login active'><a href='./login'>登录</a></span>
-				<span class='tab-item register'><a href='./register'>注册</a></span>
-			</div>
-			<form class='pure-form pure-form-aligned login-form' method='post'>
-				<fieldset>
-					<div class='pure-control-group'>
-						<label for='name'>昵称</label>
-						<input id='name' name='name' type='text' placeholder='昵称'>
-					</div>
-					<div class='pure-control-group'>
-						<label for='pwd'>密码</label>
-						<input id='pwd' name='password' type='password' placeholder='密码'>
-					</div>
-					<button type='submit' class='pure-button pure-button-submit'>登录</button>
-					<div class='control-group'>
-						<input id='remember' type='checkbox' value='记住我'/>
-						<label for='remember' class='remember'>记住我</label>
-						<a href='#' id='forget'>忘记密码</a>
-					</div>
-				</fieldset>
-				<% if(error) { %>
-			      <div><%= error %></div>
-			    <% } %>
-			</form>
+<%- include header %>
+	<div class='two-form top-margin'>
+		<div class='form-tab'>
+			<span class='tab-item login active'><a href='./login'>登录</a></span>
+			<span class='tab-item register'><a href='./register'>注册</a></span>
 		</div>
-	</body>
-</html>
+		<form class='pure-form pure-form-aligned login-form' method='post'>
+			<fieldset>
+				<div class='pure-control-group'>
+					<label for='name'>昵称</label>
+					<input id='name' name='name' type='text' placeholder='昵称'>
+				</div>
+				<div class='pure-control-group'>
+					<label for='pwd'>密码</label>
+					<input id='pwd' name='password' type='password' placeholder='密码'>
+				</div>
+				<button type='submit' class='pure-button pure-button-submit'>登录</button>
+				<div class='control-group'>
+					<input id='remember' type='checkbox' value='记住我'/>
+					<label for='remember' class='remember'>记住我</label>
+					<a href='#' id='forget'>忘记密码</a>
+				</div>
+			</fieldset>
+			<% if(error) { %>
+		      <div><%= error %></div>
+		    <% } %>
+		</form>
+	</div>
+<%- include footer %>

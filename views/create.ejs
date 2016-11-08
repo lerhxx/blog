@@ -1,35 +1,15 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title><%= title %> </title>
-		<meta charset='utf-8'>
-		<link rel='stylesheet' href='/stylesheets/pure-min.css' />
-	    <link rel='stylesheet' href='/stylesheets/common.css' />
-	    <link rel='stylesheet' href='/stylesheets/index.css' />
-	    <!--[if lt IE9]> 
-	      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	    <![endif]-->
-	    <!--[if lte IE 8]> 
-	    <noscript>
-	         <style>.html5-wrappers{display:none!important;}</style>
-	         <div class="ie-noscript-warning">您的浏览器禁用了脚本，请<a href="">查看这里</a>来启用脚本!或者<a href="/?noscript=1">继续访问</a>.
-	         </div>
-	    </noscript>
-	    <![endif]-->
-	</head>
-	<body>
-		<%- include nav %>
-		<form method='post' class='top-margin' action='/posts'>
-			<div class='pure-control-group'>
-				<label for='title'>标题：</label>
-				<input type='text' name='title' id='title' />
-			</div>
-			<div class='pure-control-group'>
-				<label for='content'>正文：</label>
-				<textarea id='content' name='content' row='20' cols='100'>
-				</textarea><br />
-			</div>
-			<input type='submit' class='pure-button pure-button-submit' value='发表' />
-		</form>
-	</body>
-</head>
+<%- include header %>
+	<form method='post' action='/posts' class='top-margin create-form pure-form'>
+		<div class="create-control-group">
+			<input class='pure-input-1' type='text' id='title' name='title' value='标题' />
+		</div>
+		<div class="create-control-group">
+			<input class='pure-input-2-3' type='text' name='abstract' value='摘要' /> 
+		</div>
+		<div class="create-control-group">
+			<input class='pure-input-1-2' type='text' id='tag' name='tag' value='标签' />
+		</div>
+		<textarea name='content'></textarea>
+		<input type='submit' value='发表' />
+	</form>
+<%- include footer %>

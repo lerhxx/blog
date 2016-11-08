@@ -3,7 +3,7 @@
 		<% posts.forEach(function(post, index) { %>
 			<li class='article-list-item'>
 				<header class='article-header'>
-					<h2 class='item-title'><a href='/u/<%=post.name %>/<%= post.title %>'><%= post.title %></a></h2>
+					<h2 class='item-title'><a href='/posts/<%=post.title %>'><%= post.title %></a></h2>
 					<p class='post-meta'><a href='/u/<%= post.name %>' class='author'><%= post.name %></a>
 					post @ 
 						<span class='post-time'><%= post.time.minute %></span>
@@ -11,14 +11,14 @@
 					</p>
 				</header>
 				<section class='article-item-abstract'>
-					 <%- post.post %>
+					 <%- post.abstract %>
 				</section>
 			</li>
 		<% }) %>
 	</ul>
-	<% }else { %>
-		<div style='font-size: 30px;' class='top-margin'>博主有点懒，还没有随笔哦~<div>
-	<% } %>
-	<%# include paging %>
+<% }else { %>
+	<div style='font-size: 30px;' class='top-margin'>博主有点懒，还没有随笔哦~<div>
+<% } %>
+<%# include paging %>
 
 

@@ -1,34 +1,13 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title><%= title %> </title>
-		<meta charset='utf-8'>
-		<link rel='stylesheet' href='/stylesheets/pure-min.css' />
-	    <link rel='stylesheet' href='/stylesheets/common.css' />
-	    <link rel='stylesheet' href='/stylesheets/index.css' />
-	    <!--[if lt IE9]> 
-	      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	    <![endif]-->
-	    <!--[if lte IE 8]> 
-	    <noscript>
-	         <style>.html5-wrappers{display:none!important;}</style>
-	         <div class="ie-noscript-warning">您的浏览器禁用了脚本，请<a href="">查看这里</a>来启用脚本!或者<a href="/?noscript=1">继续访问</a>.
-	         </div>
-	    </noscript>
-	    <![endif]-->
-	</head>
-	<body>
-		<%- include nav %>
-		<div class='top-margin'>
-			<% posts.forEach(function(post, index) { %>
-				<p><h2><a href="/u/<%= post.name %>/<%= post.time.day %><%= post.title %>"><%= post.title %></a></h2></p>
-				<p class='info'>
-					作者：<a href="/u/<%= post.name %>"><%= post.name %></a>
-					日期：<%= post.time.minute %>
-				</p>
-				<p><%- post.post %></p>
-			<% }) %>
-		</div>
-		<%- include paging %>
-	</body>
-</head>
+<%- include header %>
+	<div class='top-margin'>
+		<% posts.forEach(function(post, index) { %>
+			<p><h2><a href="/u/<%= post.name %>/<%= post.time.day %><%= post.title %>"><%= post.title %></a></h2></p>
+			<p class='info'>
+				作者：<a href="/u/<%= post.name %>"><%= post.name %></a>
+				日期：<%= post.time.minute %>
+			</p>
+			<p><%- post.post %></p>
+		<% }) %>
+	</div>
+	<%- include paging %>
+<%- include footer %>
