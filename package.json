@@ -22,5 +22,9 @@
     "morgan": "~1.7.0",
     "multer": "^1.2.0",
     "serve-favicon": "~2.3.0"
+  },
+  "engines": {
+    "node": "6.1.0",
+    "npm": "3.10.9"
   }
 }
