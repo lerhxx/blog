@@ -10,7 +10,7 @@ var config = require('config-lite');
 
 
 var app = express();
-var settings = require('./settings');
+// var settings = require('./settings');
 var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);

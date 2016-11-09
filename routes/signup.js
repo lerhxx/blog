@@ -38,7 +38,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
 
 		newUser.save(function(err, user) {
 			if(err) {
-				req.flash('error', '注册失败！');
+				req.flash('error', '失败！');
 				res.redirect('/signup');
 			}
 			req.session.user = newUser;

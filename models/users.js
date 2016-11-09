@@ -13,47 +13,65 @@ User.prototype.save = function(callback) {
 		password: this.password,
 		email: this.email
 	};
-	mongodb.open(function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
 		if(err) {
 			return callback(err);
 		}
 
-		db.collection('users', function(err, collection) {
+		// db.collection('users', function(err, collection) {
+		// 	if(err) {
+		// 		mongodb.close();
+		// 		return callback(err);
+		// 	}
+
+		// 	collection.insert(user, {
+		// 		safe: true
+		// 	}, function(err, user) {
+		// 		mongodb.close();
+		// 		if(err) {
+		// 			return callback(err);
+		// 		}
+		// 		callback(null, user[0]);
+		// 	});
+		// });
+
+		var collection = db.collection('users');
+		collection.insert(user, {safe: true}, function(err, user) {
+			db.close();
 			if(err) {
-				mongodb.close();
 				return callback(err);
 			}
-
-			collection.insert(user, {
-				safe: true
-			}, function(err, user) {
-				mongodb.close();
-				if(err) {
-					return callback(err);
-				}
-				callback(null, user[0]);
-			});
+			callback(null, user[0]);
 		});
 	});
 };
 
 User.get = function(opt, callback) {
-	mongodb.open(function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
 		if(err) {
 			return callback(err);
 		}
-		db.collection('users', function(err, collection) {
+		// db.collection('users', function(err, collection) {
+		// 	if(err) {
+		// 		mongodb.close();
+		// 		return callback(err);
+		// 	}
+		// 	collection.findOne(opt, function(err, user) {
+		// 		mongodb.close();
+		// 		if(err) {
+		// 			return callback(err);
+		// 		}
+		// 		callback(null, user);
+		// 	});
+		// });
+
+		var collection = db.collection('users');
+		collection.findOne(opt, function(err, user) {
+			db.close();
 			if(err) {
-				mongodb.close();
 				return callback(err);
 			}
-			collection.findOne(opt, function(err, user) {
-				mongodb.close();
-				if(err) {
-					return callback(err);
-				}
-				callback(null, user);
-			});
+			callback(null, user);
 		});
 	});
 };

@@ -31,60 +31,82 @@ Post.prototype.save = function(callback) {
 		comments: []
 	}
 
-	mongodb.open(function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
 		if(err) {
 			return callback(err);
 		}
-		db.collection('posts', function(err, collection) {
+		// db.collection('posts', function(err, collection) {
+		// 	if(err) {
+		// 		mongodb.close();
+		// 		return callback(err);
+		// 	}
+
+		// 	collection.insert(post, {safe: true}, function(err) {
+		// 		mongodb.close();
+		// 		if(err) {
+		// 			return callback(err);
+		// 		}
+		// 		callback(null);
+		// 	});
+		// });
+		var collection = db.collection('posts');
+		collection.insert(post, {safe: true}, function(err) {
+			db.close();
 			if(err) {
-				mongodb.close();
 				return callback(err);
 			}
-
-			collection.insert(post, {safe: true}, function(err) {
-				mongodb.close();
-				if(err) {
-					return callback(err);
-				}
-				callback(null);
-			});
+			callback(null);
 		});
 	});
 };
 
 Post.getTen = function(opt, page, callback) {
-	mongodb.open(function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
 		if(err) {
 			return callback(err);
 		}
 
-		db.collection('posts', function(err, collection) {
-			if(err) {
-				mongodb.close();
-				return callback(err);
-			}
+		// db.collection('posts', function(err, collection) {
+		// 	if(err) {
+		// 		mongodb.close();
+		// 		return callback(err);
+		// 	}
+		// 	collection.count(opt, function(err, total) {
+		// 		collection.find(opt, {
+		// 			skip: (page - 1) * 10,
+		// 			limit: 10
+		// 		}).sort({
+		// 			time: -1
+		// 		}).toArray(function(err, docs) {
+		// 			mongodb.close();
+		// 			if(err) {
+		// 				return callback(err);
+		// 			}
+		// 			docs.forEach(function(doc) {
+		// 				doc.content = markdown.toHTML(doc.content);
+		// 			});
+		// 			callback(null, docs, total);
+		// 		});
+		// 	});
+		// });
 
-			// var query = {};
-			// if(email) {
-			// 	query.email = email;
-			// }
 
-			collection.count(opt, function(err, total) {
-				collection.find(opt, {
-					skip: (page - 1) * 10,
-					limit: 10
-				}).sort({
-					time: -1
-				}).toArray(function(err, docs) {
-					mongodb.close();
-					if(err) {
-						return callback(err);
-					}
-					docs.forEach(function(doc) {
-						doc.content = markdown.toHTML(doc.content);
-					});
-					callback(null, docs, total);
+		var collection = db.collection('posts');
+		collection.count(opt, function(err, total) {
+			collection.find(opt, {
+				skip: (page - 1) * 10,
+				limit: 10
+			}).sort({
+				time: -1
+			}).toArray(function(err, docs) {
+				db.close();
+				if(err) {
+					return callback(err);
+				}
+				docs.forEach(function(doc) {
+					doc.content = markdown.toHTML(doc.content);
 				});
+				callback(null, docs, total);
 			});
 		});
 	});
@@ -103,102 +125,153 @@ Post.getAll = function(page, callback) {
 }
 
 Post.getOne = function(title, callback) {
-	mongodb.open(function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
 		if(err) {
 			return callback(err);
 		}
-		db.collection('posts', function(err, collection) {
+		// db.collection('posts', function(err, collection) {
+		// 	if(err) {
+		// 		mongodb.close();
+		// 		return callback(err);
+		// 	}
+		// 	collection.findOne({
+		// 		"title": title
+		// 	}, function(err, doc) {
+		// 		mongodb.close();
+		// 		if(err) {
+		// 			return callback(err);
+		// 		}
+		// 		if(doc){
+		// 			doc.content = markdown.toHTML(doc.content);
+		// 			doc.comments.forEach(function(comment) {
+		// 				comment.content = markdown.toHTML(comment.content);
+		// 			});
+		// 		};
+		// 		callback(null, doc);
+		// 	});
+		// });
+
+		var collection = db.collection('posts');
+		collection.findOne({"title":title}, function(err, doc) {
+			db.close();
 			if(err) {
-				mongodb.close();
 				return callback(err);
 			}
-			collection.findOne({
-				"title": title
-			}, function(err, doc) {
-				mongodb.close();
-				if(err) {
-					return callback(err);
-				}
-				if(doc){
-					doc.content = markdown.toHTML(doc.content);
-					doc.comments.forEach(function(comment) {
-						comment.content = markdown.toHTML(comment.content);
-					});
-				};
-				callback(null, doc);
-			});
+			if(doc){
+				doc.content = markdown.toHTML(doc.content);
+				doc.comments.forEach(function(comment) {
+					comment.content = markdown.toHTML(comment.content);
+				});
+			};
+			callback(null, doc);
 		});
 	});
 }
 
 Post.edit = function(name, title, callback) {
-	mongodb.open(function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
 		if(err) {
 			return callback(err);
 		}
-		db.collection('posts', function(err, collection) {
+		// db.collection('posts', function(err, collection) {
+		// 	if(err) {
+		// 		mongodb.close();
+		// 		return callback(err);
+		// 	}
+		// 	collection.findOne({
+		// 		"name": name,
+		// 		"title": title,
+		// 	}, function(err, doc) {
+		// 		mongodb.close();
+		// 		if(err) {
+		// 			return callback(err);
+		// 		}
+		// 		callback(null, doc);
+		// 	});
+		// });
+
+		var collection = db.collection('posts');
+		collection.findOne({
+			"name": name,
+			"title": title
+		}, function(err, doc) {
+			db.close();
 			if(err) {
-				mongodb.close();
 				return callback(err);
 			}
-			collection.findOne({
-				"name": name,
-				"title": title,
-			}, function(err, doc) {
-				mongodb.close();
-				if(err) {
-					return callback(err);
-				}
-				callback(null, doc);
-			});
+			callback(null, doc);
 		});
 	});
 };
 
 Post.update = function(name, title, content, callback) {
-	mongodb.open(function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
 		if(err) {
 			return callback(err);
 		}
-		db.collection('posts', function(err, collection) {
+		// db.collection('posts', function(err, collection) {
+		// 	if(err) {
+		// 		mongodb.close();
+		// 		return callback(err);
+		// 	}
+		// 	collection.update({
+		// 		"name": name,
+		// 		"title": title
+		// 	}, {$set: {content: content}}, function(err) {
+		// 		mongodb.close();
+		// 		if(err) {
+		// 			return callback(err);
+		// 		}
+		// 		callback(null);
+		// 	});
+		// });
+
+		var collection = db.collection('posts');
+		collection.update({
+			"name": name,
+			"title": title
+		}, {$set:{content: content}}, function(err) {
+			db.close();
 			if(err) {
-				mongodb.close();
 				return callback(err);
 			}
-			collection.update({
-				"name": name,
-				"title": title
-			}, {$set: {content: content}}, function(err) {
-				mongodb.close();
-				if(err) {
-					return callback(err);
-				}
-				callback(null);
-			});
+			callback(null);
 		});
 	});
 };
 
 Post.remove = function(name, title, callback) {
-	mongodb.open(function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
 		if(err) {
 			return callback(err);
 		}
-		db.collection('posts', function(err, collection) {
+		// db.collection('posts', function(err, collection) {
+		// 	if(err) {
+		// 		mongodb.close();
+		// 		return callback(err);
+		// 	}
+		// 	collection.remove({
+		// 		'name': name,
+		// 		'title': title
+		// 	},{w: 1}, function(err) {
+		// 		mongodb.close();
+		// 		if(err) {
+		// 			return callback(err);
+		// 		}
+		// 		callback(null);
+		// 	});
+		// });
+
+		var collection = db.collection('posts');
+		collection.remove({
+			"name": name,
+			"title": title
+		}, {w: 1}, function(err) {
+			db.close();
 			if(err) {
-				mongodb.close();
 				return callback(err);
 			}
-			collection.remove({
-				'name': name,
-				'title': title
-			},{w: 1}, function(err) {
-				mongodb.close();
-				if(err) {
-					return callback(err);
-				}
-				callback(null);
-			});
+			callback(null);
 		});
 	});
 };
