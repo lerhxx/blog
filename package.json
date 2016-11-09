@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-   "start": "node app.js"
+  "test": "node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha",
+  "start": "set NODE_ENV=production pm2 start app.js --node-args='--harmony' --name 'blog'"
   },
   "dependencies": {
     "body-parser": "~1.15.1",
