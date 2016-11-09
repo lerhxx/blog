@@ -1,7 +1,7 @@
 0 info it worked if it ends with ok
 1 verbose cli [ 'e:\\nodejs\\node.exe',
 1 verbose cli   'C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
-1 verbose cli   'i',
+1 verbose cli   'install',
 1 verbose cli   '-g',
 1 verbose cli   'n' ]
 2 info using npm@3.10.9
@@ -25,27 +25,27 @@
 13 silly mapToRegistry uri http://registry.cnpmjs.org/n
 14 verbose request uri http://registry.cnpmjs.org/n
 15 verbose request no auth needed
-16 info attempt registry request try #1 at 11:55:54
-17 verbose request id 8a7341a9d7a51900
+16 info attempt registry request try #1 at 12:00:02
+17 verbose request id 45e6690e39ade49a
 18 http request GET http://registry.cnpmjs.org/n
 19 http 200 http://registry.cnpmjs.org/n
 20 verbose headers { server: 'nginx/1.4.6 (Ubuntu)',
-20 verbose headers   date: 'Wed, 09 Nov 2016 04:01:16 GMT',
+20 verbose headers   date: 'Wed, 09 Nov 2016 04:05:24 GMT',
 20 verbose headers   'content-type': 'application/json; charset=utf-8',
 20 verbose headers   'transfer-encoding': 'chunked',
 20 verbose headers   connection: 'keep-alive',
 20 verbose headers   'x-current-requests': '1',
-20 verbose headers   'x-readtime': '46',
+20 verbose headers   'x-readtime': '41',
 20 verbose headers   'strict-transport-security': 'max-age=15768000',
 20 verbose headers   'content-encoding': 'gzip' }
 21 silly get cb [ 200,
 21 silly get   { server: 'nginx/1.4.6 (Ubuntu)',
-21 silly get     date: 'Wed, 09 Nov 2016 04:01:16 GMT',
+21 silly get     date: 'Wed, 09 Nov 2016 04:05:24 GMT',
 21 silly get     'content-type': 'application/json; charset=utf-8',
 21 silly get     'transfer-encoding': 'chunked',
 21 silly get     connection: 'keep-alive',
 21 silly get     'x-current-requests': '1',
-21 silly get     'x-readtime': '46',
+21 silly get     'x-readtime': '41',
 21 silly get     'strict-transport-security': 'max-age=15768000',
 21 silly get     'content-encoding': 'gzip' } ]
 22 verbose get saving n to C:\Users\Administrator\AppData\Roaming\npm-cache\registry.cnpmjs.org\n\.cache.json
@@ -80,7 +80,7 @@
 41 verbose pkgid n@2.1.4
 42 verbose cwd f:\code\myBlog\blog
 43 error Windows_NT 6.1.7601
-44 error argv "e:\\nodejs\\node.exe" "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "i" "-g" "n"
+44 error argv "e:\\nodejs\\node.exe" "C:\\Users\\Administrator\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "install" "-g" "n"
 45 error node v6.1.0
 46 error npm  v3.10.9
 47 error code EBADPLATFORM
