@@ -1,7 +1,9 @@
-var express = require('express');
-var router = express.Router();
-var checkLogin = require('../middleware/check').checkLogin;
-var User = require('../models/users');
+'use strict'
+
+const express = require('express');
+const router = express.Router();
+const checkLogin = require('../middleware/check').checkLogin;
+const User = require('../models/users');
 
 router.get('/',checkLogin, function(req, res, next) {
 	req.session.user = null;

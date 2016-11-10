@@ -1,23 +1,27 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+'use strict'
 
-var routes = require('./routes/index');
-var config = require('config-lite');
+const express = require('express');
+const path = require('path');
+const favicon = require('serve-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+
+const routes = require('./routes/index');
+const config = require('config-lite');
 
 
-var app = express();
-// var settings = require('./settings');
-var flash = require('connect-flash');
-var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
+const app = express();
+
+const flash = require('connect-flash');
+
+const session = require('express-session');
+
+const MongoStore = require('connect-mongo')(session);
 
 
 // view engine setup
-app.set('port', 9999);
+app.set('port', process.env_PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(flash());
@@ -82,3 +86,4 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+

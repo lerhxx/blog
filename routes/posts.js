@@ -1,13 +1,15 @@
-var express = require('express');
-var router = express.Router();
-var checkLogin = require('../middleware/check').checkLogin;
-var Post = require('../models/posts');
+'use strict'
+
+const express = require('express');
+const router = express.Router();
+const checkLogin = require('../middleware/check').checkLogin;
+const Post = require('../models/posts');
 
 // 获取所有用户或者特定用户文章页面
 router.get('/', function(req, res, next) {
-	var author = req.session.user;
+	let author = req.session.user;
 
-	var cb = function(err, posts, total) {
+	let cb = function(err, posts, total) {
 			res.render('./posts', {
 				title: '发表',
 				posts: posts,
@@ -36,10 +38,10 @@ router.get('/create', checkLogin, function(req, res, next) {
 
 // 发表文章
 router.post('/', checkLogin, function(req, res, next) {
-	var current = req.session.user;
-	var title = req.body.title;
-	var content = req.body.content;
-	var abstract = req.body.abstract;
+	let current = req.session.user;
+	let title = req.body.title;
+	let content = req.body.content;
+	let abstract = req.body.abstract;
 
 	try {
 		if(!title.length) {
@@ -53,7 +55,7 @@ router.post('/', checkLogin, function(req, res, next) {
 		return res.redirect('back');
 	}
 
-	var post = new Post(current.name, title, abstract, content);
+	let post = new Post(current.name, title, abstract, content);
 	post.save(function(err) {
 		if(err) {
 			req.flash('error', err);
@@ -65,7 +67,7 @@ router.post('/', checkLogin, function(req, res, next) {
 });
 
 router.get('/:title', function(req, res, next) {
-	var title = req.params.title;
+	let title = req.params.title;
 
 	Post.getOne(title, function(err, post) {
 		if(err) {

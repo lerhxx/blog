@@ -1,4 +1,6 @@
-var mongodb = require('./db');
+'use strict'
+
+const mongodb = require('./db');
 function User(user) {
 	this.name = user.name;
 	this.password = user.password;
@@ -8,7 +10,7 @@ function User(user) {
 module.exports = User;
 
 User.prototype.save = function(callback) {
-	var user = {
+	let user = {
 		name: this.name,
 		password: this.password,
 		email: this.email
@@ -18,24 +20,7 @@ User.prototype.save = function(callback) {
 			return callback(err);
 		}
 
-		// db.collection('users', function(err, collection) {
-		// 	if(err) {
-		// 		mongodb.close();
-		// 		return callback(err);
-		// 	}
-
-		// 	collection.insert(user, {
-		// 		safe: true
-		// 	}, function(err, user) {
-		// 		mongodb.close();
-		// 		if(err) {
-		// 			return callback(err);
-		// 		}
-		// 		callback(null, user[0]);
-		// 	});
-		// });
-
-		var collection = db.collection('users');
+		let collection = db.collection('users');
 		collection.insert(user, {safe: true}, function(err, user) {
 			db.close();
 			if(err) {
@@ -51,21 +36,8 @@ User.get = function(opt, callback) {
 		if(err) {
 			return callback(err);
 		}
-		// db.collection('users', function(err, collection) {
-		// 	if(err) {
-		// 		mongodb.close();
-		// 		return callback(err);
-		// 	}
-		// 	collection.findOne(opt, function(err, user) {
-		// 		mongodb.close();
-		// 		if(err) {
-		// 			return callback(err);
-		// 		}
-		// 		callback(null, user);
-		// 	});
-		// });
 
-		var collection = db.collection('users');
+		let collection = db.collection('users');
 		collection.findOne(opt, function(err, user) {
 			db.close();
 			if(err) {

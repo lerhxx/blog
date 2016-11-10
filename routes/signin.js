@@ -1,8 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var checkNotLogin = require('../middleware/check').checkNotLogin;
-var User = require('../models/users');
-var crypto = require('crypto');
+'use strict'
+
+const express = require('express');
+const router = express.Router();
+const checkNotLogin = require('../middleware/check').checkNotLogin;
+const User = require('../models/users');
+const crypto = require('crypto');
 
 router.get('/', checkNotLogin, function(req, res, next) {
 	res.render('signin',{
@@ -14,9 +16,9 @@ router.get('/', checkNotLogin, function(req, res, next) {
 });
 
 router.post('/', checkNotLogin, function(req, res, next) {
-	var name = req.body.name;
-	var password = req.body.password;
-	var md5 = crypto.createHash('md5');
+	let name = req.body.name;
+	let password = req.body.password;
+	let md5 = crypto.createHash('md5');
 
 	password = md5.update(password).digest('hex');
 
