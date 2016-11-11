@@ -46,12 +46,10 @@ app.use(session({
 }));
 
 routes(app);
-app.listen(config.port,  function() {
+app.listen(config.port,  () => {
   console.log('Express server listening on prot' + app.get('port'));
 })
 
-// app.use('/', routes);
-// app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

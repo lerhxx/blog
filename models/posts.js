@@ -12,7 +12,7 @@ function Post(name, title, abstract, content) {
 
 module.exports = Post;
 
-Post.prototype.save = function(callback) {
+Post.prototype.save = (callback) => {
 	let date = new Date();
 
 	let time = {
@@ -33,12 +33,12 @@ Post.prototype.save = function(callback) {
 		comments: []
 	}
 
-	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 		if(err) {
 			return callback(err);
 		}
 		let collection = db.collection('posts');
-		collection.insert(post, {safe: true}, function(err) {
+		collection.insert(post, {safe: true}, err => {
 			db.close();
 			if(err) {
 				return callback(err);
@@ -48,25 +48,25 @@ Post.prototype.save = function(callback) {
 	});
 };
 
-Post.getTen = function(opt, page, callback) {
-	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
+Post.getTen = (opt, page, callback) => {
+	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 		if(err) {
 			return callback(err);
 		}
 
 		let collection = db.collection('posts');
-		collection.count(opt, function(err, total) {
+		collection.count(opt, (err, total) => {
 			collection.find(opt, {
 				skip: (page - 1) * 10,
 				limit: 10
 			}).sort({
 				time: -1
-			}).toArray(function(err, docs) {
+			}).toArray((err, docs) => {
 				db.close();
 				if(err) {
 					return callback(err);
 				}
-				docs.forEach(function(doc) {
+				docs.forEach(doc => {
 					doc.content = markdown.toHTML(doc.content);
 				});
 				callback(null, docs, total);
@@ -75,33 +75,27 @@ Post.getTen = function(opt, page, callback) {
 	});
 };
 
-Post.getAllByEmail = function(email, page, callback) {
-	Post.getTen({'email': email}, page, callback);
-}
+Post.getAllByEmail = (email, page, callback) => Post.getTen({'email': email}, page, callback);
 
-Post.getAllByName = function(name, page, callback) {
-	Post.getTen({'name': name}, page, callback);
-}
+Post.getAllByName = (name, page, callback) => Post.getTen({'name': name}, page, callback);
 
-Post.getAll = function(page, callback) {
-	Post.getTen({}, page, callback);
-}
+Post.getAll = (page, callback) => Post.getTen({}, page, callback);
 
-Post.getOne = function(title, callback) {
-	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
+Post.getOne = (title, callback) => {
+	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 		if(err) {
 			return callback(err);
 		}
 
 		let collection = db.collection('posts');
-		collection.findOne({"title":title}, function(err, doc) {
+		collection.findOne({"title":title}, (err, doc) => {
 			db.close();
 			if(err) {
 				return callback(err);
 			}
 			if(doc){
 				doc.content = markdown.toHTML(doc.content);
-				doc.comments.forEach(function(comment) {
+				doc.comments.forEach(comment => {
 					comment.content = markdown.toHTML(comment.content);
 				});
 			};
@@ -110,8 +104,8 @@ Post.getOne = function(title, callback) {
 	});
 }
 
-Post.edit = function(name, title, callback) {
-	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
+Post.edit = (name, title, callback) => {
+	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 		if(err) {
 			return callback(err);
 		}
@@ -120,7 +114,7 @@ Post.edit = function(name, title, callback) {
 		collection.findOne({
 			"name": name,
 			"title": title
-		}, function(err, doc) {
+		}, (err, doc) => {
 			db.close();
 			if(err) {
 				return callback(err);
@@ -130,8 +124,8 @@ Post.edit = function(name, title, callback) {
 	});
 };
 
-Post.update = function(name, title, content, callback) {
-	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
+Post.update = (name, title, content, callback) => {
+	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 		if(err) {
 			return callback(err);
 		}
@@ -139,7 +133,7 @@ Post.update = function(name, title, content, callback) {
 		collection.update({
 			"name": name,
 			"title": title
-		}, {$set:{content: content}}, function(err) {
+		}, {$set:{content: content}}, err => {
 			db.close();
 			if(err) {
 				return callback(err);
@@ -149,8 +143,8 @@ Post.update = function(name, title, content, callback) {
 	});
 };
 
-Post.remove = function(name, title, callback) {
-	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
+Post.remove = (name, title, callback) => {
+	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 		if(err) {
 			return callback(err);
 		}
@@ -159,7 +153,7 @@ Post.remove = function(name, title, callback) {
 		collection.remove({
 			"name": name,
 			"title": title
-		}, {w: 1}, function(err) {
+		}, {w: 1}, (err) => {
 			db.close();
 			if(err) {
 				return callback(err);

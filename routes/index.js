@@ -8,11 +8,11 @@ const crypto = require('crypto'),
 	Post = require('../models/posts.js'),
 	Comment = require('../models/comment.js');
 
-module.exports = function(app) {
-	app.get('/', function(req, res) {
+module.exports = app => {
+	app.get('/', (req, res) => {
 		let page = parseInt(req.query.p) || 1;
 		let email = req.session.user ? req.session.user.email : null;
-		Post.getAll(page, function(err, posts, total) {
+		Post.getAll(page, (err, posts, total) => {
 			if(err) {
 				posts = [];
 			}

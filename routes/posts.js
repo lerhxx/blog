@@ -6,10 +6,10 @@ const checkLogin = require('../middleware/check').checkLogin;
 const Post = require('../models/posts');
 
 // 获取所有用户或者特定用户文章页面
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
 	let author = req.session.user;
 
-	let cb = function(err, posts, total) {
+	let cb = (err, posts, total) => {
 			res.render('./posts', {
 				title: '发表',
 				posts: posts,
@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 });
 
 // 发表文章页面
-router.get('/create', checkLogin, function(req, res, next) {
+router.get('/create', checkLogin, (req, res, next) => {
 	res.render('create', {
 		title: '发表',
 		user: req.session.user,
@@ -37,7 +37,7 @@ router.get('/create', checkLogin, function(req, res, next) {
 })
 
 // 发表文章
-router.post('/', checkLogin, function(req, res, next) {
+router.post('/', checkLogin, (req, res, next) => {
 	let current = req.session.user;
 	let title = req.body.title;
 	let content = req.body.content;
@@ -56,7 +56,7 @@ router.post('/', checkLogin, function(req, res, next) {
 	}
 
 	let post = new Post(current.name, title, abstract, content);
-	post.save(function(err) {
+	post.save(err => {
 		if(err) {
 			req.flash('error', err);
 			return res.redirect('/create');
@@ -66,10 +66,10 @@ router.post('/', checkLogin, function(req, res, next) {
 	})
 });
 
-router.get('/:title', function(req, res, next) {
+router.get('/:title', (req, res, next) => {
 	let title = req.params.title;
 
-	Post.getOne(title, function(err, post) {
+	Post.getOne(title, (err, post) => {
 		if(err) {
 			req.flash('error', err);
 			res.redirect('/posts');

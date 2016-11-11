@@ -6,7 +6,7 @@ const checkNotLogin = require('../middleware/check').checkNotLogin;
 const User = require('../models/users');
 const crypto = require('crypto');
 
-router.get('/', checkNotLogin, function(req, res, next) {
+router.get('/', checkNotLogin, (req, res, next) => {
 	res.render('signup', {
 		title: '注册',
 		user: req.session.user,
@@ -15,7 +15,7 @@ router.get('/', checkNotLogin, function(req, res, next) {
 	})
 })
 
-router.post('/', checkNotLogin, function(req, res, next) {
+router.post('/', checkNotLogin, (req, res, next) => {
 	let name = req.body.name;
 	let password = req.body.password;
 	let email = req.body.email;
@@ -29,7 +29,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
 		email: email
 	});
 
-	User.getByName(newUser.name, function(err, user) {
+	User.getByName(newUser.name, (err, user) => {
 		if(err) {
 			req.flash('error', '注册失败！');
 			return res.redirect('/signup');
@@ -39,7 +39,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
 			return res.redirect('/signup');
 		}
 
-		newUser.save(function(err, user) {
+		newUser.save((err, user) => {
 			if(err) {
 				req.flash('error', '失败！');
 				res.redirect('/signup');

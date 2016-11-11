@@ -6,7 +6,7 @@ const checkNotLogin = require('../middleware/check').checkNotLogin;
 const User = require('../models/users');
 const crypto = require('crypto');
 
-router.get('/', checkNotLogin, function(req, res, next) {
+router.get('/', checkNotLogin, (req, res, next) => {
 	res.render('signin',{
 		title: '登录',
 		user: req.session.user,
@@ -15,14 +15,14 @@ router.get('/', checkNotLogin, function(req, res, next) {
 	});
 });
 
-router.post('/', checkNotLogin, function(req, res, next) {
+router.post('/', checkNotLogin, (req, res, next) => {
 	let name = req.body.name;
 	let password = req.body.password;
 	let md5 = crypto.createHash('md5');
 
 	password = md5.update(password).digest('hex');
 
-	User.getByName(name, function(err, user) {
+	User.getByName(name, (err, user) => {
 		if(err) {
 			req.flash('error', '登录失败！');
 			return res.redirect('/signin');
@@ -32,7 +32,7 @@ router.post('/', checkNotLogin, function(req, res, next) {
 			return res.redirect('/signin');
 		}
 		req.session.user = user;
-		req.flash('success', ' 登录成功！');
+		req.flash('success', '登录成功！');
 		res.redirect('/');
 	})
 })

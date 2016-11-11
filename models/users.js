@@ -9,19 +9,19 @@ function User(user) {
 
 module.exports = User;
 
-User.prototype.save = function(callback) {
+User.prototype.save = callback => {
 	let user = {
 		name: this.name,
 		password: this.password,
 		email: this.email
 	};
-	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 		if(err) {
 			return callback(err);
 		}
 
 		let collection = db.collection('users');
-		collection.insert(user, {safe: true}, function(err, user) {
+		collection.insert(user, {safe: true}, (err, user) => {
 			db.close();
 			if(err) {
 				return callback(err);
@@ -31,14 +31,14 @@ User.prototype.save = function(callback) {
 	});
 };
 
-User.get = function(opt, callback) {
-	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
+User.get = (opt, callback) => {
+	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 		if(err) {
 			return callback(err);
 		}
 
 		let collection = db.collection('users');
-		collection.findOne(opt, function(err, user) {
+		collection.findOne(opt, (err, user) => {
 			db.close();
 			if(err) {
 				return callback(err);
@@ -48,10 +48,6 @@ User.get = function(opt, callback) {
 	});
 };
 
-User.getByEmail = function(email, callback) {
-	User.get({'email': email}, callback);
-}
+User.getByEmail = (email, callback) => User.get({'email': email}, callback);
 
-User.getByName = function(name, callback) {
-	User.get({'name': name}, callback);
-}
+User.getByName = (name, callback) => User.get({'name': name}, callback);

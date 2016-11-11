@@ -3,13 +3,13 @@
       <%- include cover %>
       <div class='pure-u-3-4' id='content'>
         <%- include index-list %>
+        <% if(success) { %>
+          <div><%= success %></div>
+          <div><%= user.name %></div>
+        <% } %>
+        <% if(error) { %>
+          <div><%= error %></div>
+        <% } %>
       </div>
     </div>
-    <% if(success) { %>
-      <div><%= success %></div>
-      <div><%= user.name %></div>
-    <% } %>
-    <% if(error) { %>
-      <div><%= error %></div>
-    <% } %>
 <%- include footer %>

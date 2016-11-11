@@ -10,7 +10,7 @@ function Comment(name, title, comment) {
 
 module.exports = Comment;
 
-Comment.prototype.save = function(callback) {
+Comment.prototype.save = callback => {
 	let name = this.name,
 		title = this.title,
 		comment = this.comment;
@@ -23,7 +23,7 @@ Comment.prototype.save = function(callback) {
 		minute: (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
 	}
 
-	mongodb.MongoClient.connect(mongodb.url, function(err, db) {
+	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 		if(err) {
 			return callback(err);
 		}
