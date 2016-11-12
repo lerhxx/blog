@@ -1,6 +1,7 @@
-﻿前端：
+前端：
 
 	* pure + es6 + ejs
+	*支持 hexo 风格的 markdown 语法
 
 后台
 
@@ -8,10 +9,7 @@
 
 数据库
 
-	* mongodb
-
-posts/create:
-     支持 hexo 风格的 markdown 语法
+	* mongodb     
 
 
 
