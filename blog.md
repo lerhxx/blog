@@ -1,9 +1,6 @@
 ﻿前端：
 
-	* css：stylus
-	* js：es6
-	* 自动化：gulp
-	* 转译es6：webpack、babel
+	* pure + es6 + ejs
 
 后台
 
@@ -12,6 +9,9 @@
 数据库
 
 	* mongodb
+
+posts/create:
+     支持 hexo 风格的 markdown 语法
 
 
 
