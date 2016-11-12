@@ -39,7 +39,7 @@
 #content .article-list {
   padding: 50px 3em;
 }
-.article-list .article-list-item {
+#content .article-list .article-list-item {
   padding: 1em 2em 2.5em 2em;
   border-bottom: 1px solid #eee;
 }

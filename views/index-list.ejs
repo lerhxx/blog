@@ -7,7 +7,7 @@
 					<p class='post-meta'><a href='/u/<%= post.name %>' class='author'><%= post.name %></a>
 					post @ 
 						<span class='post-time'><%= post.time.minute %></span>
-						<a class='post-category post-category-js' href='#'>JavaScript</a>
+						<a class='post-category post-category-js' href='#'><%= post.tag %></a>
 					</p>
 				</header>
 				<section class='article-item-abstract'>
@@ -16,6 +16,9 @@
 			</li>
 		<% }) %>
 	</ul>
+	<% if(success) { %>
+      <div><%= success %></div>
+    <% } %>
 <% }else { %>
 	<div style='font-size: 30px;' class='top-margin'>博主有点懒，还没有随笔哦~<div>
 <% } %>

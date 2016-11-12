@@ -1,0 +1,83 @@
+.article-box {
+  width: 60%;
+  margin: 0 auto 50px;
+  padding-top: 50px;
+}
+.article-box .article-title {
+  margin-bottom: 10px;
+}
+.article-box .content {
+  padding: 20px 0;
+}
+.article-box .assist {
+  margin: 30px 0 50px;
+  text-align: center;
+}
+.article-box .assist .like {
+  padding: 0.6em 1.6em;
+  border: 1px solid #fe4365;
+  font-size: 1.3em;
+  color: #fe4365;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  background-color: #fff;
+}
+.article-box .assist .like .like-icon {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  background: url("../images/like.png") center no-repeat;
+  background-size: cover;
+}
+.article-box .comment {
+  padding: 0;
+}
+.article-box .comment-tab {
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.article-box .comment-tab > div {
+  display: inline-block;
+}
+.article-box .comment-tab .add-comment {
+  float: right;
+}
+.article-box .comment-list {
+  padding: 20px 15px;
+}
+.article-box .commenter {
+  float: left;
+}
+.article-box .commenter .head {
+  width: 45px;
+  height: 45px;
+  margin-right: 20px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.article-box .comment-post .name {
+  color: #4094c7;
+}
+.article-box .comment-post .name,
+.article-box .comment-post .post-meta {
+  display: inline-block;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+.article-box .comment-content {
+  border-bottom: 1px solid #ddd;
+}
+.article-box .comment-content .comment {
+  margin: 10px 0 20px 65px;
+}
+.article-box .comment-content .reply {
+  margin-right: 5px;
+  margin-bottom: 15px;
+  text-align: right;
+  color: #aaa;
+}

@@ -1,0 +1,63 @@
+@import func
+
+.article-box
+	width 60%
+	margin 0 auto 50px
+	padding-top 50px
+	.article-title
+		margin-bottom 10px
+	.content
+		padding 20px 0
+	.assist
+		margin 30px 0 50px
+		text-align center
+		.like
+			padding .6em 1.6em
+			border 1px solid rgb(254, 67, 101)
+			font-size 1.3em
+			color rgb(254, 67, 101)
+			border-radius(30px)
+			background-color #fff
+			.like-icon
+				display inline-block
+				width 16px
+				height 16px
+				vertical-align middle
+				background url(../images/like.png) center no-repeat
+				background-size cover
+	.comment
+		padding 0
+	.comment-tab 
+		padding 15px 
+		border-top 1px solid #ddd
+		border-bottom 1px solid #ddd
+		& > div
+			display inline-block
+		.add-comment
+			float right
+	.comment-list
+		padding 20px 15px
+	.commenter
+		float left
+		.head
+			width 45px
+			height 45px
+			margin-right 20px
+			border-radius 50%
+			vertical-align middle
+	.comment-post
+		.name
+			color #4094c7
+		.name, .post-meta
+			display inline-block
+			margin-right 5px
+			vertical-align middle
+	.comment-content
+		border-bottom 1px solid #ddd
+		.comment
+			margin 10px 0 20px 65px
+		.reply
+			margin-right 5px
+			margin-bottom 15px
+			text-align right
+			color #aaa

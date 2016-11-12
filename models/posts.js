@@ -1,13 +1,18 @@
 'use strict'
 
-const mongodb = require('./db'),
-	markdown = require('markdown').markdown;
+const mongodb = require('./db');
+const markdown = require('marked');
+
+markdown.setOptions({
+	highlight: code => require('highlight.js').highlightAuto(code).value
+})
 
 
 class Post {
-	constructor(name, title, abstract, content) {
+	constructor(name, title, tag, abstract, content) {
 		this.name = name;
 		this.title = title;
+		this.tag = tag;
 		this.abstract = abstract;
 		this.content = content;
 	}
@@ -26,6 +31,7 @@ class Post {
 		let post = {
 			name: this.name,
 			time: time,
+			tag: this.tag,
 			title: this.title,
 			abstract: this.abstract,
 			content: this.content,
@@ -67,7 +73,7 @@ class Post {
 						return callback(err);
 					}
 					docs.forEach(doc => {
-						doc.content = markdown.toHTML(doc.content);
+						doc.content = markdown(doc.content);
 					});
 					callback(null, docs, total);
 				});
@@ -100,9 +106,9 @@ class Post {
 					return callback(err);
 				}
 				if(doc){
-					doc.content = markdown.toHTML(doc.content);
+					doc.content = markdown(doc.content);
 					doc.comments.forEach(comment => {
-						comment.content = markdown.toHTML(comment.content);
+						doc.content = markdown(doc.content);
 					});
 				};
 				callback(null, doc);

@@ -42,10 +42,14 @@ router.post('/', checkLogin, (req, res, next) => {
 	let title = req.body.title;
 	let content = req.body.content;
 	let abstract = req.body.abstract;
+	let tag = req.body.tag;
 
 	try {
 		if(!title.length) {
 			throw new Error('请填写标题！');
+		}
+		if(/^#/.test(title)) {
+			throw new Error('标题不能以“#”开头！');
 		}
 		if(!content.length) {
 			throw new Error('请填写内容！');
@@ -55,7 +59,7 @@ router.post('/', checkLogin, (req, res, next) => {
 		return res.redirect('back');
 	}
 
-	let post = new Post(current.name, title, abstract, content);
+	let post = new Post(current.name, title, tag, abstract, content);
 	post.save(err => {
 		if(err) {
 			req.flash('error', err);

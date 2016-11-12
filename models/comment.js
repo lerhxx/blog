@@ -2,43 +2,45 @@
 
 const mongodb = require('./db');
 
-function Comment(name, title, comment) {
-	this.name = name;
-	this.title = title;
-	this.comment = comment;
-}
-
-module.exports = Comment;
-
-Comment.prototype.save = callback => {
-	let name = this.name,
-		title = this.title,
-		comment = this.comment;
-	let date = new Date();
-	let time = {
-		date: date,
-		year: date.getFullYear(),
-		month: (date.getMonth() + 1),
-		day: date.getDate(),
-		minute: (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+class Comment {
+	constructor(name, title, comment) {
+		this.name = name;
+		this.title = title;
+		this.comment = comment;
 	}
 
-	mongodb.MongoClient.connect(mongodb.url, (err, db) => {
-		if(err) {
-			return callback(err);
+	save(callback) {
+		let name = this.name,
+			title = this.title,
+			comment = this.comment;
+		let date = new Date();
+		let time = {
+			date: date,
+			year: date.getFullYear(),
+			month: (date.getMonth() + 1),
+			day: date.getDate(),
+			minute: (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
 		}
-		let collection = db.collection('posts');
-		collection.update({
-			"name": name,
-			"title": title
-		},{
-			$push: {"comments": comment}
-		}, function(err) {
-			mongodb.close();
+
+		mongodb.MongoClient.connect(mongodb.url, (err, db) => {
 			if(err) {
 				return callback(err);
 			}
-			callback(null);
+			let collection = db.collection('posts');
+			collection.update({
+				"name": name,
+				"title": title
+			},{
+				$push: {"comments": comment}
+			}, function(err) {
+				mongodb.close();
+				if(err) {
+					return callback(err);
+				}
+				callback(null);
+			});
 		});
-	});
-};
+	}
+}
+
+module.exports = Comment;

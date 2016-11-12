@@ -1,0 +1,41 @@
+@import 'func'
+
+bg-color = rgb(254, 67, 101)
+menu-height = 50px
+
+#self
+	fixed(top left)
+	height 100vh
+	min-width 142px
+	text-align center
+	background-color bg-color
+	z-index 10
+	.intro-box
+		absolute(left 0 top 30%)
+		width 100%
+		color #fff
+		.portrait
+			display block
+			width 100px
+			height 100px
+			margin auto
+			border-radius(50%)
+			background url(../images/portrait.jpg) center no-repeat
+			background-size cover
+		.name
+			margin-top 10px
+			margin-bottom 20px
+			font-size 30px
+			font-weight bold
+#content
+	height 100vh
+	margin-left 25%
+	.article-list
+		padding menu-height 3em
+		.article-list-item
+			padding 1em 2em 2.5em 2em
+			border-bottom 1px solid #eee
+			.article-header
+				margin-bottom 20px
+			.item-title
+				font-size 1.5em

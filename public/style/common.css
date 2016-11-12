@@ -14,9 +14,15 @@ h6 {
 ul li {
   list-style: none;
 }
+h2 {
+  margin: 15px 0;
+}
 a {
   color: #000;
   text-decoration: none;
+}
+p {
+  line-height: 2em;
 }
 body {
   min-width: 568px;
@@ -265,4 +271,9 @@ body {
 }
 .article-list .article-list-item .item-title {
   font-size: 1.5em;
+}
+/*markdown*/
+pre {
+  padding: 10px 20px;
+  background-color: #feffc0;
 }

@@ -12,4 +12,7 @@
 		<textarea name='content'></textarea>
 		<input type='submit' value='发表' />
 	</form>
+	<% if(error) { %>
+      <div><%= error %></div>
+    <% } %>
 <%- include footer %>

@@ -1,10 +1,10 @@
 <%- include header %>
 	<div class='article-box top-margin'>
 		<article class='article top-margin'>
-			<h1 class='article-title'>WEBGL</h1>
+			<h1 class='article-title'><%- post.title %></h1>
 			<p class='post-meta'>发布于 
 				<span class='post-time'><%- post.time.minute %></span>
-				<a class='post-category post-category-js' href='#'>JavaScript</a>
+				<a class='post-category post-category-js' href='#'><%= post.tag %></a>
 			</p>
 			<div class='edit-group'>
 				<a href="/posts/title/edit">编辑</a>

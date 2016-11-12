@@ -1,0 +1,213 @@
+@import 'func'
+
+menu-height = 50px
+menu-bg = rgb(87, 96, 105)
+
+/*index*/
+bg-color = rgb(254, 67, 101)
+menu-height = 50px
+
+body, p, ul, h1, h2, h3, h4, h5, h6
+	padding 0
+	margin 0
+ul li
+	list-style none
+h2
+	margin 15px 0
+a
+	color #000
+	text-decoration none
+p
+	line-height 2em
+body
+	min-width 568px
+	font-family "Hiragino Sans GB","Helvetica Neue",'微软雅黑',Tohoma
+.menu
+	height menu-height
+	min-width 568px
+	background-color menu-bg
+	ul
+		float right
+		height menu-height
+		line-height menu-height - 14
+		font-weight bold
+		li a
+			color #ccc
+			background none
+			&:hover
+				color #fff
+				background none
+			&.active
+				color #fff
+.post-meta
+	color #999
+	font-size 90%
+	margin 0
+	.post-category
+		margin 0 0.1em
+		padding 0.3em 1em
+		color #fff
+		background #999
+		font-size 80%
+	.post-category-js
+		background #df2d4f
+	.post-category-css
+		background #5aba59
+	.post-category-webgl
+		background #4d85d1
+	.author
+		margin-right 5px
+		color red
+.top-margin
+	margin-top menu-height !important
+
+
+/*form*/
+.two-form
+	padding-top 80px
+	.form-tab
+		width 35%
+		padding-bottom 10px
+		margin 0 auto 20px
+		border-bottom 1px solid #ddd
+		text-align center
+		.tab-item
+			padding 5px 15px
+			color #aaa
+			font-weight bold
+			font-size 18px
+		& .active
+			color #000
+	.login-form
+		width 35%
+		margin 0 auto
+		label
+			width 5em
+		.pure-button-submit
+			display block
+			width 60%
+			margin 30px auto
+			color #fff
+			background-color #0078e7
+		.control-group
+			font-size 12px
+			text-align center
+			.remember
+				margin-right 15px
+			#forget,.remember
+				cursor pointer
+.create-form
+	width 80%
+	padding 15px 0
+	margin auto
+	.create-control-group
+		margin-bottom 15px
+	textarea
+		width 100%
+		height 350px
+		resize none
+
+/*article*/
+.article-box
+	width 60%
+	margin 0 auto 50px
+	padding-top 50px
+	.article-title
+		margin-bottom 10px
+	.content
+		padding 20px 0
+	.assist
+		margin 30px 0 50px
+		text-align center
+		.like
+			padding .6em 1.6em
+			border 1px solid rgb(254, 67, 101)
+			font-size 1.3em
+			color rgb(254, 67, 101)
+			border-radius(30px)
+			background-color #fff
+			.like-icon
+				display inline-block
+				width 16px
+				height 16px
+				vertical-align middle
+				background url(../images/like.png) center no-repeat
+				background-size cover
+	.comment
+		padding 0
+	.comment-tab 
+		padding 15px 
+		border-top 1px solid #ddd
+		border-bottom 1px solid #ddd
+		& > div
+			display inline-block
+		.add-comment
+			float right
+	.comment-list
+		padding 20px 15px
+	.commenter
+		float left
+		.head
+			width 45px
+			height 45px
+			margin-right 20px
+			border-radius 50%
+			vertical-align middle
+	.comment-post
+		.name
+			color #4094c7
+		.name, .post-meta
+			display inline-block
+			margin-right 5px
+			vertical-align middle
+	.comment-content
+		border-bottom 1px solid #ddd
+		.comment
+			margin 10px 0 20px 65px
+		.reply
+			margin-right 5px
+			margin-bottom 15px
+			text-align right
+			color #aaa
+/*index*/
+#self
+	fixed(top left)
+	height 100vh
+	min-width 142px
+	text-align center
+	background-color bg-color
+	z-index 10
+	.intro-box
+		absolute(left 0 top 30%)
+		width 100%
+		color #fff
+		.portrait
+			display block
+			width 100px
+			height 100px
+			margin auto
+			border-radius(50%)
+			background url(../images/portrait.jpg) center no-repeat
+			background-size cover
+		.name
+			margin-top 10px
+			margin-bottom 20px
+			font-size 30px
+			font-weight bold
+#content
+	height 100vh
+	margin-left 25%
+.article-list
+	padding menu-height 3em
+	.article-list-item
+		padding 1em 2em 2.5em 2em
+		border-bottom 1px solid #eee
+		.article-header
+			margin-bottom 20px
+		.item-title
+			font-size 1.5em
+
+/*markdown*/
+pre
+	padding 10px 20px
+	background-color #FEFFC0
