@@ -11,9 +11,3 @@
 
 	* mongodb     
 
-
-
-MongoDB API 中文翻译
-
-请看 Wiki
-
