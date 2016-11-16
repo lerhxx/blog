@@ -60,13 +60,24 @@ router.post('/', checkLogin, (req, res, next) => {
 	}
 
 	let post = new Post(current.name, title, tag, abstract, content);
-	post.save(err => {
+	Post.getOne(title, (err, doc) => {
 		if(err) {
 			req.flash('error', err);
-			return res.redirect('/create');
+			res.redirect('/posts/create');
 		}
-		req.flash('success', '发布成功！');
-		res.redirect('/posts');
+		console.log(doc);
+		if(doc) {
+			req.flash('error', '文章标题不能重复！');
+			res.redirect('/posts/create');
+		} 
+		post.save(err => {
+			if(err) {
+				req.flash('error', err);
+				return res.redirect('/create');
+			}
+			req.flash('success', '发布成功！');
+			res.redirect('/posts');
+		})
 	})
 });
 
