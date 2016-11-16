@@ -7,7 +7,7 @@ const Post = require('../models/posts');
 
 // 获取所有用户或者特定用户文章页面
 router.get('/', (req, res, next) => {
-	let author = req.session.user;
+	// let author = req.session.user;
 
 	let cb = (err, posts, total) => {
 			res.render('./posts', {
@@ -19,11 +19,11 @@ router.get('/', (req, res, next) => {
 			})
 		};
 
-	if(author) {
-		Post.getAllByName(author.name, 1, cb)
-	}else {
+	// if(author) {
+	// 	Post.getAllByName(author.name, 1, cb)
+	// }else {
 		Post.getAll(1, cb)
-	}
+	// }
 });
 
 // 发表文章页面

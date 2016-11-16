@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>x_x 博客</title>
+	<meta charset='utf-8'>
+	<meta name='viewport' content='width=device-width, initial-scale=1, user-scalable=no'>
+	<link rel='stylesheet' href='../public/css/pure-min.css' />
+	<link rel='stylesheet' href='../public/css/common.css'>
+	<link rel='stylesheet' href='../public/css/article-list.css'>
+    <!--[if lt IE9]> 
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lte IE 8]> 
+    <noscript>
+         <style>.html5-wrappers{display:none!important;}</style>
+         <div class="ie-noscript-warning">您的浏览器禁用了脚本，请<a href="">查看这里</a>来启用脚本!或者<a href="/?noscript=1">继续访问</a>.
+         </div>
+    </noscript>
+    <![endif]-->
+</head>
+<body>
+	<nav class='pure-menu pure-menu-horizontal pure-menu-fixed menu'>
+		<ul class='pure-menu-list'>
+			<li class='pure-menu-item'><a href='#' class='pure-menu-link'>首页</a></li><li class='pure-menu-item'><a href='#' class='pure-menu-link active'>随笔</a></li><li class='pure-menu-item'><a href='#' class='pure-menu-link'>个人信息</a></li><li class='pure-menu-item'><a href='#' class='pure-menu-link'>登录</a></li>
+		</ul>
+	</nav>
+	<div class='article-box top-margin'>
+		<article class='article'>
+			<h1 class='article-title'>WEBGL</h1>
+			<p class='post-meta'>post @ 
+				<span class='post-time'>2016-10-24</span>
+				<a class='post-category post-category-js' href='#'>JavaScript</a>
+			</p>
+			<section class='content'>
+				<p>
+					如果你用过网页版的百度地图，你大概3D全景图浏览是一种怎样的酷炫体验：在一个点可以360度环顾周围的建筑、景色，当然也可以四周移动，就像身临其境。</p>
+				<p>	科普</p>
+
+				<p>	全景图共分为三种：</p>
+
+				<p>	①球面全景图</p>
+
+				<p>	利用一张全景图围成一个球，自身位置位于球体内。由于图片是矩形，所以最上和最下的缝合处很明显就能够看得出来。</p>
+
+				<p>	球面全景图是最接近人眼的构建模式，若利用多个立面构建，拼接方法繁琐，性能消耗高。</p>
+
+				<p>	因此，本文介绍的是上述通过一张全景图构成的球面全景图。</p>
+
+				<p>	②立方体全景图</p>
+
+				<p>	一个立方体，有六个面组成，所以就需要六张图片啦。自身的位置位于立方体中间。这也是最常见的全景图构建模式。</p>
+
+				<p>	③柱状全景图</p>
+
+				<p>	这个则是前两种构建模式的结合版啦。</p>
+
+				<p>	准备</p>
+
+				<p>	在浏览器中实现3D全景浏览开发，首先需要几样东西：</p>
+
+				<p>	①支持WebGL和canvas的浏览器</p>
+
+				<p>	②Three.js</p>
+
+				<p>	这里就不介绍这个插件了，所以阅读本文需要Three.js简单的基础 O(∩_∩)O~</p>
+
+				<p>	下载地址：https://github.com/mrdoob/three.js</p>
+
+				<p>	③photo-sphere-viewer.js</p>
+
+				<p>	这是基于Three.js开发的柱状全景图插件</p>
+
+				<p>	下载地址：https://github.com/JeremyHeleine/Photo-Sphere-Viewer</p>
+
+				<p>	④全景图</p>
+				</p>
+			</section>
+			<section class='assist'>
+				<button class='like'>
+					<span class='like-icon'></span>
+					&nbsp;喜欢&nbsp;&nbsp; | &nbsp;&nbsp;<span>10</span></button>
+			</section>
+		</article>
+		<div class='comment'>
+			<div class='comment-tab'>
+				<div class='comment-sum'>
+					<span>10000+</span>条评论
+				</div>
+				<div class='add-comment'>
+					<span class='write-icon'></span>
+					<span>添加评论</span>
+				</div>
+			</div>
+			<ul class='comment-list'>
+				<li class='comment-item'>
+					<div class='commenter'>
+						<img class='head' src='../public/images/portrait.jpg'></img>
+					</div>
+					<div class='comment-content'>
+						<div class='comment-post'>
+							<div class='name'>lili</div>
+							<div class='post-meta'>
+								<div class='post-time'>2016-10-24</div>
+							</div>
+						</div>
+						<p class='comment'>
+							利用一张全景图围成一个球，自身位置位于球体内。由于图片是矩形，所以最上和最下的缝合处很明显就能够看得出来。
+						</p>
+						<p class='reply'>回复</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+</body>
+</html>

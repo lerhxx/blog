@@ -246,7 +246,7 @@ body {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   border-radius: 50%;
-  background: url("../images/portrait.jpg") center no-repeat;
+no-repeat
   background-size: cover;
 }
 #self .intro-box .name {
@@ -276,4 +276,30 @@ body {
 pre {
   padding: 10px 20px;
   background-color: #feffc0;
+}
+/*info*/
+.info-content {
+  width: 60%;
+  padding: 1em;
+  margin: 0 auto;
+  border: 1px solid #ffc0cb;
+  font-size: 1.5rem;
+}
+.info-content .info-group {
+  margin: 1em 0;
+}
+.info-content .info-group label {
+  display: inline-block;
+  width: 10em;
+  margin-right: 1em;
+  text-align: right;
+}
+.info-content .avatar {
+  width: 150px;
+  height: 150px;
+  border: none;
+  outline: none;
+}
+.info-content #avatar {
+  max-width: 200px;
 }

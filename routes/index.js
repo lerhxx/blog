@@ -34,6 +34,8 @@ module.exports = app => {
 	app.use('/signup', require('./signup'));
 	app.use('/signout', require('./signout'));
 	app.use('/posts', require('./posts'));
+	app.use('/info', require('./info'));
+	// app.use('/public', require('./public'));
 
 
 

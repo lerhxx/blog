@@ -20,14 +20,11 @@ router.post('/', checkNotLogin, (req, res, next) => {
 	let password = req.body.password;
 	let email = req.body.email;
 
+
 	let md5 = crypto.createHash('md5');
 	password = md5.update(password).digest('hex');
 
-	let newUser = new User({
-		name: name,
-		password: password,
-		email: email
-	});
+	let newUser = new User(name, password, email);
 
 	User.getByName(newUser.name, (err, user) => {
 		if(err) {
